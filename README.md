@@ -48,3 +48,7 @@ Stream.periodic(const Duration(seconds: 1), (int t) {
 Kesimpulan :
 
 Pada setiap detiknya, steram akan mmendapatkan 1 warna dari list colors secara urtu dan looping terus.
+
+### Soal 4
+
+![image alt](images/Soal4.gif)

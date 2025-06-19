@@ -52,3 +52,31 @@ Pada setiap detiknya, steram akan mmendapatkan 1 warna dari list colors secara u
 ### Soal 4
 
 ![image alt](images/Soal4.gif)
+
+1. Menggunakan listen
+
+- listen digunakan ketika kita ingin menjalankan aksi setiap kali ada data baru dari stream, tanpa harus menunggu stream selesai.
+  Contoh : Ketika tampilan UI diperbarui, kita bisa menekan atau hold warna yang baru diperbarui
+
+2. Menggunakan await for
+
+- await for digunakan ketika kita ingin menunggu dan memproses setiap data dari stream secara berurutan, seperti membaca satu per satu dari antrian.
+  Contoh : Kita menunggu semua warna yang ada dalam list keluar dahulu, baru setelah itu melanjutkan tugas selanjutnya.
+
+### Soal 4
+
+![image alt](images/Soal4.gif)
+
+### Soal 5
+
+![image alt](images/Soal5.gif)
+
+1. Menggunakan listen
+
+- listen digunakan ketika kita ingin menjalankan aksi setiap kali ada data baru dari stream, tanpa harus menunggu stream selesai.
+  Contoh : Ketika tampilan UI diperbarui, kita bisa menekan atau hold warna yang baru diperbarui
+
+2. Menggunakan await for
+
+- await for digunakan ketika kita ingin menunggu dan memproses setiap data dari stream secara berurutan, seperti membaca satu per satu dari antrian.
+  Contoh : Kita menunggu semua warna yang ada dalam list keluar dahulu, baru setelah itu melanjutkan tugas selanjutnya.

@@ -53,20 +53,6 @@ Pada setiap detiknya, steram akan mmendapatkan 1 warna dari list colors secara u
 
 ![image alt](images/Soal4.gif)
 
-1. Menggunakan listen
-
-- listen digunakan ketika kita ingin menjalankan aksi setiap kali ada data baru dari stream, tanpa harus menunggu stream selesai.
-  Contoh : Ketika tampilan UI diperbarui, kita bisa menekan atau hold warna yang baru diperbarui
-
-2. Menggunakan await for
-
-- await for digunakan ketika kita ingin menunggu dan memproses setiap data dari stream secara berurutan, seperti membaca satu per satu dari antrian.
-  Contoh : Kita menunggu semua warna yang ada dalam list keluar dahulu, baru setelah itu melanjutkan tugas selanjutnya.
-
-### Soal 4
-
-![image alt](images/Soal4.gif)
-
 ### Soal 5
 
 ![image alt](images/Soal5.gif)
@@ -80,3 +66,41 @@ Pada setiap detiknya, steram akan mmendapatkan 1 warna dari list colors secara u
 
 - await for digunakan ketika kita ingin menunggu dan memproses setiap data dari stream secara berurutan, seperti membaca satu per satu dari antrian.
   Contoh : Kita menunggu semua warna yang ada dalam list keluar dahulu, baru setelah itu melanjutkan tugas selanjutnya.
+
+## Praktikum 2 : Stream controllers dan sinks
+
+### Soal 6
+
+![image alt](images/Soal6.gif)
+
+```dart
+@override
+  void initState() {
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+    stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    });
+    super.initState();
+  }
+```
+
+1. Maksud code initState() diatas
+
+Fungsi initState() digunakan untuk menginisialisasi stream dan mulai mendengarkan data yang masuk.
+Setiap kali ada angka baru yang dikirim ke stream, nilai lastNumber akan diubah dan UI akan diperbarui melalui setState().
+
+2. Maksud code addRandomNuber() dibawah
+
+```dart
+void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
+  }
+```
+
+Fungsi di addRandomNumber() digunakan untuk menghasilkan angka acak dari 0 sampai 9, lalu mengirim angka tersebut ke stream melalui addNumberToSink().

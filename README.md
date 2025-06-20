@@ -123,3 +123,40 @@ void addRandomNumber() {
     numberStream.addError();
   }
 ```
+
+## Praktikum 3 : Injeksi data ke streams
+
+### Soal 8
+
+![image alt](images/Soal8.gif)
+
+1. Langkah 1
+
+```dart
+late StreamTransformer transformer;
+```
+
+Mendeklarasikan sebuah variabel dengan nama transformer dengan tipe dari variabel ini adalah StreamTransformer. Keyword late pada code ini artinya variabel ini belum langsung diinisialisasi, tapi akan diinisialisasi sebelum digunakan.
+
+2. Langkah 2
+
+```dart
+stream
+        .transform(transformer)
+        .listen((event) {
+          setState(() {
+            lastNumber = event;
+          });
+        })
+        .onError((error) {
+          setState(() {
+            lastNumber = -1;
+          });
+        });
+```
+
+Pada potongan code stream.transform(transformer), data dari stream akan diproses terlebih dahulu oleh variabel transformer sebelum diterukan ke listen().
+
+Lalu pada potongan code **_*.listen((event) {setState(() { lastNumber = event;});});*_**, akan menangani data hasil transformasi dari step diatas.
+
+Dan untuk potongan code **_*.onError((error) {setState(() { lastNumber = -1;});});*_** menangani error dari stream.

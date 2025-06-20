@@ -172,3 +172,17 @@ Dan untuk potongan code **_*.onError((error) {setState(() { lastNumber = -1;});}
 2. dispose() dipanggil saat widget dihapus, seperti saat berpindah halaman. Di dalamnya, subscription.cancel() digunakan untuk menghentikan stream agar tidak terjadi kebocoran memori dan tidak memproses data saat widget sudah tidak aktif. Pemanggilan super.dispose() memastikan proses pembersihan bawaan tetap berjalan dengan semestinya.
 
 3. Fungsi ini menambahkan angka acak (0–9) ke stream menggunakan random.nextInt(10). Sebelum mengirim, dicek apakah controller masih terbuka untuk menghindari error. Jika masih terbuka, angka dikirim melalui addNumberToSink(). Jika sudah tertutup, lastNumber diatur ke -1 sebagai penanda error yang bisa ditampilkan di UI.
+
+## Praktikum 5 : Multiple stream subscriptions
+
+### Soal 10
+
+![image alt](images/Soal10.gif)
+
+Error "Bad state: Stream has already been listened to" bisa terjadi karena ketika sebuah stream biasa (single-subscription stream) didengarkan (listen) lebih dari satu kali. Secara default, stream di Dart hanya bisa memiliki satu listener. Jika kita mencoba mendengarkannya lagi tanpa mengubahnya menjadi broadcast stream, maka akan muncul error ini.
+
+### Soal 11
+
+![image alt](images/Soal11.gif)
+
+Saat tombol 'New Random Number' ditekan beberapa kali, akan muncul angka double/duplikat di layar. Mucul angka double ini karena terdapat dua listener yang aktif pada stream yang sama. Setiap kali tombol ditekan, memang hanya satu angka acak yang dikirim ke stream, namun karena dua listener sedang mendengarkan, maka fungsi setState() juga dipanggil dua kali. Akibatnya, angka yang ditampilkan pada UI menjadi duplikat atau bertambah dua kali, meskipun hanya satu data yang dikirim. Masalah ini umum terjadi jika listen() dipanggil berulang tanpa membatalkan atau mengelola listener dengan benar.

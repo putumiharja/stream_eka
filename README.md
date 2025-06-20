@@ -104,3 +104,22 @@ void addRandomNumber() {
 ```
 
 Fungsi di addRandomNumber() digunakan untuk menghasilkan angka acak dari 0 sampai 9, lalu mengirim angka tersebut ke stream melalui addNumberToSink().
+
+### Soal 7
+
+```dart
+addError() {
+    controller.sink.addError('error');
+  }
+```
+
+1. Pada langkah 13, method addError() digunakan untuk menambahkan kesalahan (error) secara manual ke dalam stream, controller.sink.addError('error') akan mengirimkan pesan error tersebut ke semua listener stream yang sedang aktif.
+
+2. Pada langkah 15, kode tersebut bertujuan untuk handle error dari stream dengan menjalankan setState() untuk memperbarui lastNumber menjadi -1 sebagai indikasi error, tapi penulisannya masih salah secara sintaksis meskipun maksudnya sudah benar.
+
+```dart
+void addRandomNumber() {
+    Random random = Random();
+    numberStream.addError();
+  }
+```

@@ -59,18 +59,37 @@ class _StreamHomePageState extends State<StreamHomePage> {
   //   changeColor();
   // } // Soal 5
 
+  // @override
+  // void initState() {
+  //   numberStream = NumberStream();
+  //   numberStreamController = numberStream.controller;
+  //   Stream stream = numberStreamController.stream;
+  //   stream.listen((event) {
+  //     setState(() {
+  //       lastNumber = event;
+  //     });
+  //   });
+  //   super.initState();
+  // } // Soal 6
+
   @override
   void initState() {
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
     Stream stream = numberStreamController.stream;
-    stream.listen((event) {
-      setState(() {
-        lastNumber = event;
-      });
-    });
+    stream
+        .listen((event) {
+          setState(() {
+            lastNumber = event;
+          });
+        })
+        .onError((error) {
+          setState(() {
+            lastNumber = -1;
+          });
+        });
     super.initState();
-  } // Soal 6
+  } // Soal 7
 
   @override
   void dispose() {
@@ -82,6 +101,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
     Random random = Random();
     int myNum = random.nextInt(10);
     numberStream.addNumberToSink(myNum);
+    // numberStream.addError(); // Soal 7;
   }
 
   @override

@@ -160,3 +160,15 @@ Pada potongan code stream.transform(transformer), data dari stream akan diproses
 Lalu pada potongan code **_*.listen((event) {setState(() { lastNumber = event;});});*_**, akan menangani data hasil transformasi dari step diatas.
 
 Dan untuk potongan code **_*.onError((error) {setState(() { lastNumber = -1;});});*_** menangani error dari stream.
+
+## Praktikum 4 : Subscribe ke stream events
+
+### Soal 9
+
+![image alt](images/Soal9.gif)
+
+1. numberStream adalah instance dari class NumberStream yang menyediakan akses ke stream dan controllernya. controller digunakan untuk mengirim data ke stream, sedangkan stream tersebut didengarkan menggunakan listen(). Setiap data baru yang diterima akan disimpan ke lastNumber melalui setState() agar UI diperbarui. Hasil dari listen() disimpan dalam subscription, sehingga bisa dibatalkan nanti saat tidak dibutuhkan, misalnya di method dispose().
+
+2. dispose() dipanggil saat widget dihapus, seperti saat berpindah halaman. Di dalamnya, subscription.cancel() digunakan untuk menghentikan stream agar tidak terjadi kebocoran memori dan tidak memproses data saat widget sudah tidak aktif. Pemanggilan super.dispose() memastikan proses pembersihan bawaan tetap berjalan dengan semestinya.
+
+3. Fungsi ini menambahkan angka acak (0–9) ke stream menggunakan random.nextInt(10). Sebelum mengirim, dicek apakah controller masih terbuka untuk menghindari error. Jika masih terbuka, angka dikirim melalui addNumberToSink(). Jika sudah tertutup, lastNumber diatur ke -1 sebagai penanda error yang bisa ditampilkan di UI.
